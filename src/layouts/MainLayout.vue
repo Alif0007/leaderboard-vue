@@ -32,6 +32,15 @@
           :key="link.title"
           v-bind="link"
         />
+        <q-item @click="logout" clickable>
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>Log Out</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -43,6 +52,7 @@
 
 <script>
 import EssentialLink from "components/EssentialLink.vue";
+import axios from "axios";
 
 const linksData = [
   {
@@ -76,11 +86,30 @@ export default {
   components: {
     EssentialLink,
   },
+
   data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData,
     };
+  },
+  methods: {
+    async logout() {
+      const TokenId = localStorage.getItem("apiToken");
+      const config = {
+        url: "https://icircles.app/api/auth/logout",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer` + TokenId,
+        },
+      };
+      try {
+        const res = await axios(config);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(localStorage.getItem("apiToken"));
+    },
   },
 };
 </script>

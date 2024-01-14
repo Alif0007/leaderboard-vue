@@ -72,6 +72,7 @@ export default {
       payment: null,
       options: ["Cash", "Bank", "Card", "Bkash", "Nagad"],
       product: ["Webcard", "iVault", "Website", "ID-Card"],
+      text: "",
     };
   },
 };

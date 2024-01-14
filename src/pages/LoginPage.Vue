@@ -62,6 +62,7 @@ export default {
       userInfo: {},
       loading: false,
       error: false,
+      apiToken: "",
     };
   },
   methods: {
@@ -87,6 +88,8 @@ export default {
         }
 
         this.userInfo = res.data;
+        localStorage.setItem("apiToken", this.userInfo.user.t);
+        console.log(this.userInfo.user.t);
       } catch (error) {
         console.log(error);
         this.loading = false;

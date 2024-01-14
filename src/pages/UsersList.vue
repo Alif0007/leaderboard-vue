@@ -1,16 +1,87 @@
 <template>
   <div>
-    <h1>User List</h1>
+    <div>
+      <h4 style="text-align: center; margin-top: 15px">User List</h4>
+    </div>
+
+    <div class="flex">
+      <table class="table-style">
+        <thead class="heading-style">
+          <th>SL</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+
+          <th>Email</th>
+          <th>Date Of Birth</th>
+          <th>Status</th>
+        </thead>
+        <tr v-for="(item, index) in items">
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.user.gender }}</td>
+
+          <td>{{ item.user.email }}</td>
+          <td>{{ item.user.birth_date }}</td>
+          <td>{{ item.user.status }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "UsersList",
   data() {
-    return {};
+    return {
+      items: [],
+    };
+  },
+  methods: {
+    async getData() {
+      const config = {
+        url: "https://icircles.app/api/massociation/members/25?type=employee&current_page=1&keyword=&status=1",
+        method: "GET",
+      };
+      try {
+        const res = await axios(config);
+        if (res.status == 200) {
+          this.items = res.data.data;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.getData();
   },
 };
 </script>
 
-<style></style>
+<style>
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.table-style {
+  background-color: rgb(243, 248, 246);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  margin-top: 0;
+}
+
+.heading-style th {
+  background-color: rgb(227, 232, 236);
+  min-width: 100px;
+  height: 40px;
+}
+
+.table-style tr {
+  text-align: center;
+}
+</style>
