@@ -13,7 +13,6 @@
           <th>Gender</th>
 
           <th>Email</th>
-          <th>Date Of Birth</th>
           <th>Status</th>
         </thead>
         <tr v-for="(item, index) in items">
@@ -23,7 +22,7 @@
           <td>{{ item.user.gender }}</td>
 
           <td>{{ item.user.email }}</td>
-          <td>{{ item.user.birth_date }}</td>
+
           <td>{{ item.user.status }}</td>
         </tr>
       </table>
@@ -57,7 +56,10 @@ export default {
     },
   },
   mounted() {
-    this.getData();
+    let user = localStorage.getItem("apiToken");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
   },
 };
 </script>
@@ -79,9 +81,12 @@ export default {
   background-color: rgb(227, 232, 236);
   min-width: 100px;
   height: 40px;
+  text-align: left;
+  padding: 5px;
 }
 
-.table-style tr {
-  text-align: center;
+.table-style tr td {
+  /* text-align: center; */
+  padding: 5px;
 }
 </style>

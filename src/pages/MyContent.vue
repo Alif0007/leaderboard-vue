@@ -7,6 +7,12 @@
 <script>
 export default {
   name: "MyContent",
+  mounted() {
+    let user = localStorage.getItem("apiToken");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
+  },
 };
 </script>
 

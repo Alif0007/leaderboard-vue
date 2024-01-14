@@ -94,21 +94,31 @@ export default {
     };
   },
   methods: {
-    async logout() {
-      const TokenId = localStorage.getItem("apiToken");
-      const config = {
-        url: "https://icircles.app/api/auth/logout",
-        method: "POST",
-        headers: {
-          Authorization: `Bearer` + TokenId,
-        },
-      };
-      try {
-        const res = await axios(config);
-      } catch (error) {
-        console.log(error);
+    logout() {
+      localStorage.clear();
+      this.$router.push({ name: "login" });
+      // const TokenId = localStorage.getItem("apiToken");
+      // localStorage.removeItem("apiToken");
+      // this.$router.push({ name: "login" });
+      // const config = {
+      //   url: "https://icircles.app/api/auth/logout",
+      //   method: "POST",
+      //   headers: {
+      //     Authorization: `Bearer` + TokenId,
+      //   },
+      // };
+      // try {
+      //   const res = await axios(config);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      // console.log(localStorage.getItem("apiToken"));
+    },
+    mounted() {
+      let user = localStorage.getItem("apiToken");
+      if (!user) {
+        this.$router.push({ name: "login" });
       }
-      console.log(localStorage.getItem("apiToken"));
     },
   },
 };

@@ -19,18 +19,7 @@
           <td>08.08.2024</td>
           <td>Al Amin Alif</td>
           <td>Webcard</td>
-          <td>
-            <div class="drop-down">
-              <select name="cars" id="cars">
-                <option value="">Cash</option>
-                <option value="">Card</option>
-                <option value="">Bank</option>
-                <option value="">Bkash</option>
-                <option value="">Nagad</option>
-                <option value="">Rocket</option>
-              </select>
-            </div>
-          </td>
+          <td>Cash</td>
           <td>0</td>
           <td>500</td>
           <td>10.08.2024</td>
@@ -43,18 +32,7 @@
           <td>08.08.2024</td>
           <td>Ms Tanisha</td>
           <td>Webcard</td>
-          <td>
-            <div class="drop-down">
-              <select name="cars" id="cars">
-                <option value="">Cash</option>
-                <option value="">Card</option>
-                <option value="">Bank</option>
-                <option value="">Bkash</option>
-                <option value="">Nagad</option>
-                <option value="">Rocket</option>
-              </select>
-            </div>
-          </td>
+          <td>Cash</td>
           <td>0</td>
           <td>500</td>
           <td>10.08.2024</td>
@@ -67,18 +45,7 @@
           <td>08.08.2024</td>
           <td>Al Mahmud</td>
           <td>Webcard</td>
-          <td>
-            <div class="drop-down">
-              <select name="cars" id="cars">
-                <option value="">Cash</option>
-                <option value="">Card</option>
-                <option value="">Bank</option>
-                <option value="">Bkash</option>
-                <option value="">Nagad</option>
-                <option value="">Rocket</option>
-              </select>
-            </div>
-          </td>
+          <td>Cash</td>
           <td>0</td>
           <td>500</td>
           <td>10.08.2024</td>
@@ -95,6 +62,12 @@ export default {
   name: "Dashboard",
   data() {
     return {};
+  },
+  mounted() {
+    let user = localStorage.getItem("apiToken");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
   },
 };
 </script>
@@ -113,10 +86,13 @@ export default {
 .heading-style th {
   background-color: rgb(227, 232, 236);
   min-width: 100px;
+  text-align: left;
+  padding: 5px;
 }
 
 .table-style tr {
-  text-align: center;
+  /* text-align: center; */
+  padding: 5px;
 }
 
 .drop-down select {
