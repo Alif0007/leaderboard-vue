@@ -27,6 +27,9 @@
         </tr>
       </table>
     </div>
+    <div class="flex">
+      <div class="loader" v-if="loading"></div>
+    </div>
   </div>
 </template>
 
@@ -37,10 +40,12 @@ export default {
   data() {
     return {
       items: [],
+      loading: false,
     };
   },
   methods: {
     async getData() {
+      this.loading = true;
       const config = {
         url: "https://icircles.app/api/massociation/members/25?type=employee&current_page=1&keyword=&status=1",
         method: "GET",
@@ -49,17 +54,16 @@ export default {
         const res = await axios(config);
         if (res.status == 200) {
           this.items = res.data.data;
+          this.loading = false;
         }
       } catch (error) {
+        this.loading = true;
         console.log(error);
       }
     },
   },
   mounted() {
-    let user = localStorage.getItem("apiToken");
-    if (!user) {
-      this.$router.push({ name: "login" });
-    }
+    this.getData();
   },
 };
 </script>
@@ -88,5 +92,35 @@ export default {
 .table-style tr td {
   /* text-align: center; */
   padding: 5px;
+}
+
+/* loading */
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #000000;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

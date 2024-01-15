@@ -83,7 +83,6 @@ export default {
       try {
         const res = await axios(config);
         if (res.status == 200) {
-          this.loading = false;
           this.$router.push({ name: "Dashboard" });
         }
 
@@ -93,6 +92,7 @@ export default {
       } catch (error) {
         console.log(error);
         this.loading = false;
+
         this.error = true;
       }
     },

@@ -3,6 +3,14 @@ const routes = [
   {
     path: '/dashboard',
     component: () => import('layouts/MainLayout.vue'),
+    // beforeEnter: (to, from, next) => {
+    //   const user = localStorage.getItem("apiToken")
+    //   if (!user) {
+    //     next('/');
+    //   } else {
+    //     next();
+    //   }
+    // },
     children: [
       { path: '/', name: "Dashboard", component: () => import('pages/Index.vue') },
       { path: '/dashboard/userlist', component: () => import('pages/UsersList.vue') },
@@ -26,5 +34,14 @@ const routes = [
   }
 
 ]
+
+// routes.beforeEach((to, from, next) => {
+//   console.log('router')
+//   if (!localStorage.getItem("apiToken")) {
+//     next('/login');
+//   } else {
+//     next();
+//   }
+// });
 
 export default routes

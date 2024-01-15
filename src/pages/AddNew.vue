@@ -126,6 +126,12 @@ export default {
       }
     },
   },
+  mounted() {
+    let user = localStorage.getItem("apiToken");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
+  },
 };
 </script>
 
