@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <h3 class="header">12 Sales Blogs You Should Read Every Day</h3>
+    <h3 style="font-weight: 900">12 Sales Blogs You Should Read Every Day</h3>
+    <p style="font-size: 1.1rem">
+      <span style="color: rgb(151, 67, 219)">Brianna Lawson</span> · December
+      14, 2022
+    </p>
     <Div>
       <img
         class="img-style"
@@ -317,7 +321,8 @@ export default {
 }
 
 .header {
-  margin: 20px 0;
+  margin: 30px 0;
   font-weight: 500;
+  font-size: 30px;
 }
 </style>

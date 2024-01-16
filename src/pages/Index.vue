@@ -68,6 +68,7 @@ export default {
     if (!user) {
       this.$router.push({ name: "login" });
     }
+   
   },
 };
 </script>
@@ -77,7 +78,7 @@ export default {
   overflow-y: scroll;
 }
 .table-style {
-  background-color: rgb(243, 248, 246);
+  background-color: #fff;
   padding: 20px;
   margin: 20px;
   border-radius: 10px;

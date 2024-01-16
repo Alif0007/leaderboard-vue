@@ -44,7 +44,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="layout-style">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -52,7 +52,6 @@
 
 <script>
 import EssentialLink from "components/EssentialLink.vue";
-import axios from "axios";
 
 const linksData = [
   {
@@ -97,23 +96,8 @@ export default {
     logout() {
       localStorage.clear();
       this.$router.push({ name: "login" });
-      // const TokenId = localStorage.getItem("apiToken");
-      // localStorage.removeItem("apiToken");
-      // this.$router.push({ name: "login" });
-      // const config = {
-      //   url: "https://icircles.app/api/auth/logout",
-      //   method: "POST",
-      //   headers: {
-      //     Authorization: `Bearer` + TokenId,
-      //   },
-      // };
-      // try {
-      //   const res = await axios(config);
-      // } catch (error) {
-      //   console.log(error);
-      // }
-      // console.log(localStorage.getItem("apiToken"));
     },
+
     mounted() {
       let user = localStorage.getItem("apiToken");
       if (!user) {
@@ -123,3 +107,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.layout-style {
+  background-color: #f1f1f1;
+  height: 100vh;
+}
+</style>

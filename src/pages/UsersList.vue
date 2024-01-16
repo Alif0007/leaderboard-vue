@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div style="background-color: #f1f1f1 !important">
     <div>
       <h4 style="text-align: center; margin-top: 15px">User List</h4>
     </div>
-
     <div class="flex">
       <table class="table-style">
         <thead class="heading-style">
@@ -64,6 +63,10 @@ export default {
   },
   mounted() {
     this.getData();
+    let user = localStorage.getItem("apiToken");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
   },
 };
 </script>
@@ -72,9 +75,10 @@ export default {
 .flex {
   display: flex;
   justify-content: center;
+  height: 100% !important;
 }
 .table-style {
-  background-color: rgb(243, 248, 246);
+  background-color: #fff;
   padding: 20px;
   margin: 20px;
   border-radius: 10px;

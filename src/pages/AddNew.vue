@@ -1,77 +1,78 @@
 <template>
-  <div>
-    <h4 class="heading">New Sales Form</h4>
-    <div class="q-pa-md example-row-equal-width">
-      <div class="row">
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input outlined type="date" v-model="date" label="Date" />
+  <div class="container">
+    <div class="card-style">
+      <h4 class="heading">New Sales Form</h4>
+      <div class="q-pa-md example-row-equal-width">
+        <div class="row">
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input outlined v-model="name" label="Name" />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input outlined v-model="name" label="Name" />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-select
+                outlined
+                v-model="products"
+                :options="product"
+                label="Product"
+              />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-select
-              outlined
-              v-model="products"
-              :options="product"
-              label="Product"
-            />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-select
+                outlined
+                v-model="payment"
+                :options="options"
+                label="Payment Method"
+              />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-select
-              outlined
-              v-model="payment"
-              :options="options"
-              label="Payment Method"
-            />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input outlined type="number" v-model="due" label="Due" />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input outlined type="number" v-model="due" label="Due" />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input
+                outlined
+                type="number"
+                v-model="total_amount"
+                label="Total Amount"
+              />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input
-              outlined
-              type="number"
-              v-model="total_amount"
-              label="Total Amount"
-            />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input
+                outlined
+                type="date"
+                v-model="delivery_date"
+                label="Delivery Date"
+              />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input
-              outlined
-              type="date"
-              v-model="delivery_date"
-              label="Delivery Date"
-            />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input
+                outlined
+                v-model="client_details"
+                label="Client Details"
+              />
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input outlined v-model="client_details" label="Client Details" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="q-ma-sm">
-            <q-input outlined v-model="remarks" label="Remarks" />
+          <div class="col-6">
+            <div class="q-ma-sm">
+              <q-input outlined v-model="remarks" label="Remarks" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="btn-submit">
-      <q-btn unelevated color="primary" label="Submit" />
+      <div class="btn-submit">
+        <q-btn unelevated color="primary" label="Submit" />
+      </div>
     </div>
   </div>
 </template>
@@ -126,16 +127,22 @@ export default {
       }
     },
   },
-  mounted() {
-    let user = localStorage.getItem("apiToken");
-    if (!user) {
-      this.$router.push({ name: "login" });
-    }
-  },
 };
 </script>
 
 <style>
+.container {
+  display: flex;
+  justify-content: center;
+}
+.card-style {
+  max-width: 1000px;
+  background-color: #fff;
+  margin: 35px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 .heading {
   display: flex;
   justify-content: center;
